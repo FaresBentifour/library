@@ -101,6 +101,43 @@ import express from 'express';
          return res.json("book created succesfully!!")  
             })
      });
+     /*app.post('/Add_book', (req, res) => {
+    const bookValues = [
+        req.body.title,
+        req.body.category,
+        req.body.publisher_date,
+        req.body.cover,
+        req.body.linkShop,
+        req.body.description
+    ];
+
+    let authorID, publisherID;
+
+    // Insérer l'auteur s'il n'existe pas déjà
+    db.query("INSERT INTO Author (`auth_Name`, `date_Birth`, `nationality`) VALUES (?, ?, ?)", [req.body.auth_Name, req.body.date_Birth, req.body.nationality], (err, result) => {
+        if (err) return res.json(err);
+        authorID = result.insertId;
+
+        // Insérer l'éditeur s'il n'existe pas déjà
+        db.query("INSERT INTO Publisher (`pub_Name`) VALUES (?)", [req.body.pub_Name], (err, result) => {
+            if (err) return res.json(err);
+            publisherID = result.insertId;
+
+            // Insérer le livre avec les IDs d'auteur et d'éditeur
+            db.query("INSERT INTO Book (`title`, `category`, `publisher_date`, `cover`, `linkShop`, `description`, `publisherID`) VALUES (?, ?, ?, ?, ?, ?, ?)", [...bookValues, publisherID], (err, result) => {
+                if (err) return res.json(err);
+
+                // Insérer les relations dans la table de jonction
+                db.query("INSERT INTO AuthorBook (`authorID`, `bookID`) VALUES (?, ?)", [authorID, result.insertId], (err, result) => {
+                    if (err) return res.json(err);
+
+                    return res.json("Book created successfully!");
+                });
+            });
+        });
+    });
+});
+ */
 
 
 
